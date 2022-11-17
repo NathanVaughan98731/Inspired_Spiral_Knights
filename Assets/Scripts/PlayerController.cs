@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera PlayerCamera;
     [Space]
     [SerializeField] private float Speed;
-    [SerializeField] private float Sensitivity;
     [SerializeField] private float Jumpforce;
+    [SerializeField] private float punchForce;
 
     private const string AXIS_HORIZONTAL = "Horizontal";
     private const string AXIS_VERTICAL = "Vertical";
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
+        Vector3 MoveVector = PlayerMovementInput * Speed;
         PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -51,7 +51,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.LookAt(hit.point);
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+            Debug.Log(hit.point);
         }
+        
 
     }
 
