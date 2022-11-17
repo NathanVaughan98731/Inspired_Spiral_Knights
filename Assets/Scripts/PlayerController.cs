@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Vector3 PlayerMovementInput;
-    private Vector2 PlayerMouseInput;
+    private Vector3 PlayerMouseInput;
     private float xRot;
 
-    [SerializeField] private Transform PlayerCamera;
     [SerializeField] private Rigidbody PlayerBody;
+    [SerializeField] private Camera PlayerCamera;
     [Space]
     [SerializeField] private float Speed;
     [SerializeField] private float Sensitivity;
@@ -27,10 +27,9 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         PlayerMovementInput = new Vector3(Input.GetAxis(AXIS_HORIZONTAL), 0f, Input.GetAxis(AXIS_VERTICAL));
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         MovePlayer();
-        MovePlayerCamera();
+        RotatePlayer();
     }
 
     private void MovePlayer()
@@ -44,12 +43,15 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void MovePlayerCamera()
+    private void RotatePlayer()
     {
-        xRot -= PlayerMouseInput.y * Sensitivity;
-
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(hit.point);
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+        }
 
     }
 
