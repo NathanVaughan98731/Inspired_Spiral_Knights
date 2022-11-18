@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.LookAt(hit.point);
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-            Debug.Log(hit.point);
+            //Debug.Log(hit.point);
         }
         
 
