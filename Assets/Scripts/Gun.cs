@@ -7,8 +7,11 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
+    [SerializeField] private GameObject bulletPrefab;
+    public float bulletSpeed = 10;
 
     float timeSinceLastShot;
+
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
@@ -42,11 +45,14 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
-                    damageable?.Damage(gunData.damage);
-                }
+                var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+                bullet.GetComponent<Bullet>().setBulletDamage(gunData.damage);
+                bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
+                //if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                //{
+                //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                //    damageable?.Damage(gunData.damage);
+                //}
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();
