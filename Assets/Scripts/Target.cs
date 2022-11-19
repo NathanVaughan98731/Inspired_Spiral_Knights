@@ -5,7 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour, IDamageable
 {
     [SerializeField] private float health = 100f;
-    public void Damage(float damage)
+    public void Damage(int damage)
     {
         this.health -= damage;
         if (health <= 0)

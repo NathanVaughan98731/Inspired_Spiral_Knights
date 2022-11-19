@@ -5,9 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float life = 3;
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
+    public GameObject damageText;
 
-    public void setBulletDamage(float gunDataDamage)
+    public void setBulletDamage(int gunDataDamage)
     {
         this.damage = gunDataDamage;
     }
@@ -23,6 +24,8 @@ public class Bullet : MonoBehaviour
         //    damageable?.Damage(gunData.damage);
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         damageable?.Damage(damage);
+        DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+        indicator.SetDamageText(damage);
         Destroy(gameObject);
     }
 }

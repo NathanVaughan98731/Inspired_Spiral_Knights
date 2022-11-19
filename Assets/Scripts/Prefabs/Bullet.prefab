@@ -160,4 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
-  gunData: {fileID: 0}
+  damage: 0
+  damageText: {fileID: 449336637863616847, guid: 90371be5002f7ef4091851816ffbfd7c, type: 3}
