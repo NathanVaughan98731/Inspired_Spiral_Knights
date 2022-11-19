@@ -24,6 +24,8 @@ public class Health : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.localScale = new Vector3(this.health/100, 0.2f, 1);
+            healthBar.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y + 1f, transform.position.z);
+            healthBar.transform.LookAt(healthBar.transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
         }
     }
 
@@ -33,7 +35,14 @@ public class Health : MonoBehaviour
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage.");
         }
-        this.health -= amount;
+        if (health - amount <= 0)
+        {
+            this.health = 0;
+        }
+        else
+        {
+            this.health -= amount;
+        }
     }
 
     public void Heal(int amount)
