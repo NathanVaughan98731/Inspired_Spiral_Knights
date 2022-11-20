@@ -22,10 +22,14 @@ public class Bullet : MonoBehaviour
     {
         //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
         //    damageable?.Damage(gunData.damage);
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        damageable?.Damage(damage);
-        DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
-        indicator.SetDamageText(damage);
-        Destroy(gameObject);
+        if (collision.gameObject.GetComponent<Bullet>() == null)
+        {
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            damageable?.Damage(damage);
+            DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+            indicator.SetDamageText(damage);
+            Destroy(gameObject);
+        }
+
     }
 }

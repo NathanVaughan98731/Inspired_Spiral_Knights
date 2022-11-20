@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4767890305924313373}
   - component: {fileID: -6039082411897594575}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Assualt Rifle Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 7989868971565375212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1561389047405595032}
@@ -160,5 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
-  damage: 0
+  damage: 3
   damageText: {fileID: 449336637863616847, guid: 90371be5002f7ef4091851816ffbfd7c, type: 3}
