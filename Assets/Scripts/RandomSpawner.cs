@@ -10,7 +10,7 @@ public class RandomSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-249, 250), 5, Random.Range(-249, 250));
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-40, 50), 5, Random.Range(-40, 50));
             Instantiate(cubePrefab, randomSpawnPosition, Quaternion.identity);
         }
     }
