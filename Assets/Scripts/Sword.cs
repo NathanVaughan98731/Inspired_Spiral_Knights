@@ -9,7 +9,7 @@ public class Sword : MonoBehaviour
     [SerializeField] public SwordData swordData;
     [SerializeField] private Transform swordEdge;
     [SerializeField] private GameObject swordSlashPrefab;
-    [SerializeField] private GameObject swordSlashCollider;
+    [SerializeField] private GameObject swordAttackArea;
 
     public float swordSlashSpeed;
 
@@ -23,7 +23,7 @@ public class Sword : MonoBehaviour
         PlayerSlash.chargeInput += StartCharge;
     }
 
-    private bool CanSlash() => timeSinceLastSlash > swordData.speed;
+    private bool CanSlash() => timeSinceLastSlash > 1f / swordData.speed;
 
     public void Slash()
     {
@@ -32,16 +32,18 @@ public class Sword : MonoBehaviour
         {
             //var swordSlash = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
             //swordSlash.GetComponent<>
-            swordSlashCollider.SetActive(true);
+            swordAttackArea.SetActive(true);
             timeSinceLastSlash = 0;
             OnSwordSlash();
         }
+
+
 
     }
 
     public void Deactivate()
     {
-        swordSlashCollider.SetActive(false);
+        swordAttackArea.SetActive(false);
     }
 
 
@@ -49,7 +51,16 @@ public class Sword : MonoBehaviour
     private void Update()
     {
         timeSinceLastSlash += Time.deltaTime;
-        
+        if (swordAttackArea.activeSelf)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 1f / swordData.speed)
+            {
+                timer = 0;
+                swordAttackArea.SetActive(false);
+            }
+        }
+
     }
 
     public void StartCharge()
