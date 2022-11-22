@@ -12,6 +12,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject swordAttackArea;
     [SerializeField] private GameObject swordModel;
     [SerializeField] private GameObject swordParticleSystem;
+    [SerializeField] private Animator swordAnimator;
 
     public float swordSlashSpeed;
 
@@ -56,7 +57,7 @@ public class Sword : MonoBehaviour
         if (swordAttackArea.activeSelf)
         {
             timer += Time.deltaTime;
-            if (timer >= 1f / swordData.speed)
+            if (timer >= 0.1f)
             {
                 timer = 0;
                 swordAttackArea.SetActive(false);
@@ -78,9 +79,10 @@ public class Sword : MonoBehaviour
     IEnumerator SwordSwing()
     {
         swordParticleSystem.SetActive(true);
-        swordModel.GetComponent<Animator>().Play("SwordSwing");
-        yield return new WaitForSeconds(0.6f);
-        swordModel.GetComponent<Animator>().Play("New State");
+        swordAnimator.SetFloat("SwordSwingSpeed", swordData.speed);
+        swordAnimator.Play("SwordSwing");
+        yield return new WaitForSeconds(1f / swordData.speed);
+        swordAnimator.Play("New State");
         swordParticleSystem.SetActive(false);
     }
 }
