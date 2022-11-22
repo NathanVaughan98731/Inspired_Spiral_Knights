@@ -60,7 +60,10 @@ public class Gun : MonoBehaviour
                 OnGunShot();
             }
         }
-        
+        else
+        {
+            StartReload();
+        }        
     }
 
     private void Update()
