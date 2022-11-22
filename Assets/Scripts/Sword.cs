@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject swordSlashPrefab;
     [SerializeField] private GameObject swordAttackArea;
     [SerializeField] private GameObject swordModel;
+    [SerializeField] private GameObject swordParticleSystem;
 
     public float swordSlashSpeed;
 
@@ -22,6 +23,7 @@ public class Sword : MonoBehaviour
         PlayerSlash.slashInput += Slash;
         PlayerSlash.deactivate += Deactivate;
         PlayerSlash.chargeInput += StartCharge;
+        swordParticleSystem.SetActive(false);
     }
 
     private bool CanSlash() => timeSinceLastSlash > 1f / swordData.speed;
@@ -75,8 +77,10 @@ public class Sword : MonoBehaviour
 
     IEnumerator SwordSwing()
     {
+        swordParticleSystem.SetActive(true);
         swordModel.GetComponent<Animator>().Play("SwordSwing");
         yield return new WaitForSeconds(0.6f);
         swordModel.GetComponent<Animator>().Play("New State");
+        swordParticleSystem.SetActive(false);
     }
 }
