@@ -10,6 +10,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private Transform swordEdge;
     [SerializeField] private GameObject swordSlashPrefab;
     [SerializeField] private GameObject swordAttackArea;
+    [SerializeField] private GameObject swordModel;
 
     public float swordSlashSpeed;
 
@@ -27,8 +28,7 @@ public class Sword : MonoBehaviour
 
     public void Slash()
     {
-        Debug.Log(CanSlash());
-        if (CanSlash())
+        if (CanSlash() && this.gameObject.activeSelf)
         {
             //var swordSlash = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
             //swordSlash.GetComponent<>
@@ -70,6 +70,13 @@ public class Sword : MonoBehaviour
 
     private void OnSwordSlash()
     {
-        
+        StartCoroutine(SwordSwing());
+    }
+
+    IEnumerator SwordSwing()
+    {
+        swordModel.GetComponent<Animator>().Play("SwordSwing");
+        yield return new WaitForSeconds(2.0f);
+        swordModel.GetComponent<Animator>().Play("New State");
     }
 }

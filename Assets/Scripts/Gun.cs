@@ -45,8 +45,9 @@ public class Gun : MonoBehaviour
     {
         if (gunData.currentAmmo > 0)
         {
-            if (CanShoot())
+            if (CanShoot() && this.gameObject.activeSelf)
             {
+                Debug.Log(gunData.name);
                 var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
                 bullet.GetComponent<Bullet>().setBulletDamage(gunData.damage);
                 bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
@@ -69,7 +70,7 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-
+        Debug.Log(gunData.damage);
         //Debug.DrawRay(muzzle.position, muzzle.forward);
     }
 
