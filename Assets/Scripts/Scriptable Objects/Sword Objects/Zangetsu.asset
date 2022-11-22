@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Zangetsu
   damage: 26
-  speed: 5
+  speed: 1
   knockback: 0
   range: 5
   timeToAttack: 1
