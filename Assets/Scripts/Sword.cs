@@ -8,7 +8,19 @@ public class Sword : MonoBehaviour
 {
     // Should make these readable
     [SerializeField] public SwordData swordData;
+
+    [Header("Sword Properties")]
+    [SerializeField] public int damage;
+    [SerializeField] public int speed;
+
+
+
+
     [SerializeField] private Transform swordEdge;
+
+    [SerializeField] private bool chargingSword;
+    [SerializeField] private float timeCharged;
+
     [SerializeField] private GameObject swordSlashPrefab;
     [SerializeField] private GameObject swordAttackArea;
     [SerializeField] private GameObject swordModel;
@@ -24,9 +36,10 @@ public class Sword : MonoBehaviour
 
     private void Start()
     {
+        damage = swordData.damage;
         PlayerSlash.slashInput += Slash;
         PlayerSlash.deactivate += Deactivate;
-        PlayerSlash.chargeInput += StartCharge;
+        PlayerSlash.chargeInput += Charge;
         swordParticleSystem.SetActive(false);
     }
 
@@ -42,8 +55,7 @@ public class Sword : MonoBehaviour
             timeSinceLastSlash = 0;
             OnSwordSlash();
         }
-
-
+        chargingSword = false;
 
     }
 
@@ -67,6 +79,15 @@ public class Sword : MonoBehaviour
             }
         }
 
+        if (chargingSword)
+        {
+            timeCharged += Time.deltaTime;
+        }
+        else
+        {
+            timeCharged = 0;
+        }
+
         if (ammoDisplay != null)
         {
             ammoDisplay.SetText("0 / 0");
@@ -78,9 +99,19 @@ public class Sword : MonoBehaviour
 
     }
 
-    public void StartCharge()
+    public void Charge()
     {
+        chargingSword = true;
+        Debug.Log(damage);
 
+        if (timeCharged >= 2f)
+        {
+            damage = swordData.damage + 10;
+        }
+        else
+        {
+            damage = swordData.damage;
+        }
     }
 
     private void OnSwordSlash()

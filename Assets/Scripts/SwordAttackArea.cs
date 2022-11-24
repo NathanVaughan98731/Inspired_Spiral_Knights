@@ -12,9 +12,9 @@ public class SwordAttackArea : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         IDamageable damageable = collider.gameObject.GetComponentInParent<IDamageable>();
-        damageable?.Damage(sword.swordData.damage);
+        damageable?.Damage(sword.damage);
         DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
-        indicator.SetDamageText(sword.swordData.damage);
+        indicator.SetDamageText(sword.damage);
 
         Vector3 mousePos = Input.mousePosition;
         forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;

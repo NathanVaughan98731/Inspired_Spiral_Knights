@@ -11,16 +11,23 @@ public class PlayerSlash : MonoBehaviour
 
     [SerializeField] private KeyCode chargeKey;
 
+    private bool charging;
+
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             slashInput?.Invoke();
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0))
         {
-            deactivate?.Invoke();
+            chargeInput?.Invoke();
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            slashInput?.Invoke();
+        }
+
 
     }
 }
