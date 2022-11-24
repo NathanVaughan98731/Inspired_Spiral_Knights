@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Gun : MonoBehaviour
 {
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private TextMeshProUGUI ammoDisplay;
+    [SerializeField] private TextMeshProUGUI weaponNameDisplay;
     public float bulletSpeed = 10;
 
     float timeSinceLastShot;
@@ -70,7 +73,16 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        Debug.Log(gunData.damage);
+        if (ammoDisplay != null)
+        {
+            ammoDisplay.SetText(gunData.currentAmmo + " / " + gunData.magSize);
+        }
+        if (weaponNameDisplay != null)
+        {
+            weaponNameDisplay.SetText(gunData.name);
+        }
+
+
         //Debug.DrawRay(muzzle.position, muzzle.forward);
     }
 

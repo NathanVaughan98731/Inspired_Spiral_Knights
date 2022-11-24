@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Sword : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject swordModel;
     [SerializeField] private GameObject swordParticleSystem;
     [SerializeField] private Animator swordAnimator;
+    [SerializeField] private TextMeshProUGUI ammoDisplay;
+    [SerializeField] private TextMeshProUGUI weaponNameDisplay;
 
     public float swordSlashSpeed;
 
@@ -62,6 +65,15 @@ public class Sword : MonoBehaviour
                 timer = 0;
                 swordAttackArea.SetActive(false);
             }
+        }
+
+        if (ammoDisplay != null)
+        {
+            ammoDisplay.SetText("0 / 0");
+        }        
+        if (weaponNameDisplay != null)
+        {
+            weaponNameDisplay.SetText(swordData.name);
         }
 
     }
