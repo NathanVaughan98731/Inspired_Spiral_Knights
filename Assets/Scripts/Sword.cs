@@ -11,6 +11,8 @@ public class Sword : MonoBehaviour
 
     [Header("Sword Properties")]
     [SerializeField] public int damage;
+    [SerializeField] public float chargeTime;
+    [SerializeField] public float chargeDamage;
     [SerializeField] public int speed;
 
 
@@ -25,6 +27,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject swordAttackArea;
     [SerializeField] private GameObject swordModel;
     [SerializeField] private GameObject swordParticleSystem;
+    [SerializeField] private GameObject swordChargeParticleSystem;
     [SerializeField] private Animator swordAnimator;
     [SerializeField] private TextMeshProUGUI ammoDisplay;
     [SerializeField] private TextMeshProUGUI weaponNameDisplay;
@@ -37,10 +40,13 @@ public class Sword : MonoBehaviour
     private void Start()
     {
         damage = swordData.damage;
+        chargeTime = swordData.chargeTime;
+        chargeDamage = swordData.chargeDamage;
         PlayerSlash.slashInput += Slash;
         PlayerSlash.deactivate += Deactivate;
         PlayerSlash.chargeInput += Charge;
         swordParticleSystem.SetActive(false);
+        swordChargeParticleSystem.SetActive(false);
     }
 
     private bool CanSlash() => timeSinceLastSlash > 1f / swordData.speed;
@@ -56,7 +62,7 @@ public class Sword : MonoBehaviour
             OnSwordSlash();
         }
         chargingSword = false;
-
+        swordChargeParticleSystem.SetActive(false);
     }
 
     public void Deactivate()
@@ -102,11 +108,12 @@ public class Sword : MonoBehaviour
     public void Charge()
     {
         chargingSword = true;
-        Debug.Log(damage);
 
-        if (timeCharged >= 2f)
+        if (timeCharged >= chargeTime)
         {
-            damage = swordData.damage + 10;
+            swordChargeParticleSystem.SetActive(true);
+            // Change damage to floats later on and fix text to be rounded
+            damage = swordData.damage + (int)chargeDamage;
         }
         else
         {

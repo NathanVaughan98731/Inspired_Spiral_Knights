@@ -50,7 +50,6 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot() && this.gameObject.activeSelf)
             {
-                Debug.Log(gunData.name);
                 var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
                 bullet.GetComponent<Bullet>().setBulletDamage(gunData.damage);
                 bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
