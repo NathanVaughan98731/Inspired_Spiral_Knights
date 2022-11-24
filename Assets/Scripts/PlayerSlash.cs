@@ -8,6 +8,7 @@ public class PlayerSlash : MonoBehaviour
     public static Action slashInput;
     public static Action deactivate;
     public static Action chargeInput;
+    public static Action chargeAttackInput;
 
     [SerializeField] private KeyCode chargeKey;
 
@@ -23,11 +24,5 @@ public class PlayerSlash : MonoBehaviour
         {
             chargeInput?.Invoke();
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            slashInput?.Invoke();
-        }
-
-
     }
 }

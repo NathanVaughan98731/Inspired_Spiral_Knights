@@ -12,7 +12,8 @@ public class SwordData : ScriptableObject
     public int damage;
     public float speed;
     public float chargeTime;
-    public float chargeDamage;
+    public int chargeDamage;
+    public float slashProjectileSpeed;
     public float knockback;
     public float range;
     public float timeToAttack;

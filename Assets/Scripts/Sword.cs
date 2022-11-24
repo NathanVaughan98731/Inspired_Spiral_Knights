@@ -12,7 +12,7 @@ public class Sword : MonoBehaviour
     [Header("Sword Properties")]
     [SerializeField] public int damage;
     [SerializeField] public float chargeTime;
-    [SerializeField] public float chargeDamage;
+    [SerializeField] public int chargeDamage;
     [SerializeField] public int speed;
 
 
@@ -32,6 +32,8 @@ public class Sword : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoDisplay;
     [SerializeField] private TextMeshProUGUI weaponNameDisplay;
 
+    private bool chargedUp;
+
     public float swordSlashSpeed;
 
     float timeSinceLastSlash;
@@ -43,10 +45,10 @@ public class Sword : MonoBehaviour
         chargeTime = swordData.chargeTime;
         chargeDamage = swordData.chargeDamage;
         PlayerSlash.slashInput += Slash;
-        PlayerSlash.deactivate += Deactivate;
         PlayerSlash.chargeInput += Charge;
         swordParticleSystem.SetActive(false);
         swordChargeParticleSystem.SetActive(false);
+        chargedUp = false;
     }
 
     private bool CanSlash() => timeSinceLastSlash > 1f / swordData.speed;
@@ -57,6 +59,12 @@ public class Sword : MonoBehaviour
         {
             //var swordSlash = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
             //swordSlash.GetComponent<>
+            if (chargedUp)
+            {
+                Discharge();
+                chargingSword = false;
+                swordChargeParticleSystem.SetActive(false);
+            }
             swordAttackArea.SetActive(true);
             timeSinceLastSlash = 0;
             OnSwordSlash();
@@ -92,6 +100,7 @@ public class Sword : MonoBehaviour
         else
         {
             timeCharged = 0;
+
         }
 
         if (ammoDisplay != null)
@@ -111,6 +120,7 @@ public class Sword : MonoBehaviour
 
         if (timeCharged >= chargeTime)
         {
+            chargedUp = true;
             swordChargeParticleSystem.SetActive(true);
             // Change damage to floats later on and fix text to be rounded
             damage = swordData.damage + (int)chargeDamage;
@@ -119,6 +129,15 @@ public class Sword : MonoBehaviour
         {
             damage = swordData.damage;
         }
+    }
+
+    public void Discharge()
+    {
+        var slashProjectile = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
+        slashProjectile.GetComponent<SlashProjectile>().setSlashDamage(swordData.chargeDamage);
+        slashProjectile.GetComponent<Rigidbody>().velocity = swordEdge.forward * swordData.slashProjectileSpeed;
+        chargingSword = false;
+        chargedUp = false;
     }
 
     private void OnSwordSlash()
