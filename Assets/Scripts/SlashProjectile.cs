@@ -5,8 +5,14 @@ using UnityEngine;
 public class SlashProjectile : MonoBehaviour
 {
     public float life = 3;
+    public Vector3 direction;
     [SerializeField] private int damage;
     public GameObject damageText;
+
+    private void Update()
+    {
+        this.transform.position += direction;
+    }
 
     public void setSlashDamage(int slashDamage)
     {
@@ -18,19 +24,16 @@ public class SlashProjectile : MonoBehaviour
         Destroy(gameObject, life);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
-        //    damageable?.Damage(gunData.damage);
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.GetComponent<SlashProjectile>() == null && collision.gameObject.tag != "Player")
+
+        if (other.GetComponentInParent<SlashProjectile>() == null && other.tag != "Player")
         {
-            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            Debug.Log(other.GetComponentInParent<IDamageable>());
+            IDamageable damageable = other.GetComponentInParent<IDamageable>();
             damageable?.Damage(damage);
             DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
             indicator.SetDamageText(damage);
-            //Destroy(gameObject);
         }
-
     }
 }
