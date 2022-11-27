@@ -10,8 +10,6 @@ public class PlayerSlash : MonoBehaviour
     public static Action countChargeTime;
     public static Action chargeAttackInput;
 
-    [SerializeField] private KeyCode chargeKey;
-
     private int swingOnce = 0;
 
     private void Update()

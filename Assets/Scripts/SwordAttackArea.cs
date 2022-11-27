@@ -11,16 +11,19 @@ public class SwordAttackArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        IDamageable damageable = collider.gameObject.GetComponentInParent<IDamageable>();
-        damageable?.Damage(sword.damage);
-        DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
-        indicator.SetDamageText(sword.damage);
+        if (collider.gameObject.GetComponent<SlashProjectile>() == null)
+        {
+            IDamageable damageable = collider.gameObject.GetComponentInParent<IDamageable>();
+            damageable?.Damage(sword.totalDamage);
+            DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+            indicator.SetDamageText(sword.totalDamage);
 
-        Vector3 mousePos = Input.mousePosition;
-        forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;
-        Vector3 n_forceDirection = forceDirection.normalized;
-        
-        collider.GetComponentInParent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * sword.swordData.knockback, ForceMode.Impulse);
+            Vector3 mousePos = Input.mousePosition;
+            forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;
+            Vector3 n_forceDirection = forceDirection.normalized;
+
+            collider.GetComponentInParent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * sword.swordData.knockback, ForceMode.Impulse);
+        }
     }
 
     public static Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float height)

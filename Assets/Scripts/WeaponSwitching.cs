@@ -59,7 +59,24 @@ public class WeaponSwitching : MonoBehaviour
     {
         for (int i = 0; i < weapons.Length; i++)
         {
-            weapons[i].gameObject.SetActive(i == weaponIndex);
+            if (i == weaponIndex)
+            {
+                weapons[i].gameObject.SetActive(true);
+                if (weapons[i].gameObject.GetComponent<Sword>() != null)
+                {
+                    this.GetComponentInParent<PlayerSlash>().enabled = true;
+                    this.GetComponentInParent<PlayerShoot>().enabled = false;
+                }
+                else
+                {
+                    this.GetComponentInParent<PlayerShoot>().enabled = true;
+                    this.GetComponentInParent<PlayerSlash>().enabled = false;
+                }
+            }
+            else
+            {
+                weapons[i].gameObject.SetActive(false);
+            }
         }
 
         timeSinceLastSwitch = 0f;

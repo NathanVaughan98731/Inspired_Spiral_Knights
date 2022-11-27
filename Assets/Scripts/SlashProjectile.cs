@@ -22,7 +22,8 @@ public class SlashProjectile : MonoBehaviour
     {
         //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
         //    damageable?.Damage(gunData.damage);
-        if (collision.gameObject.GetComponent<SlashProjectile>() == null)
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.GetComponent<SlashProjectile>() == null && collision.gameObject.tag != "Player")
         {
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
             damageable?.Damage(damage);
