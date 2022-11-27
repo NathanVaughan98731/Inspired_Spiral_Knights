@@ -29,7 +29,6 @@ public class SlashProjectile : MonoBehaviour
 
         if (other.GetComponentInParent<SlashProjectile>() == null && other.tag != "Player")
         {
-            Debug.Log(other.GetComponentInParent<IDamageable>());
             IDamageable damageable = other.GetComponentInParent<IDamageable>();
             damageable?.Damage(damage);
             DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();

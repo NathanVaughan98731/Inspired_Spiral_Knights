@@ -20,8 +20,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
-        //    damageable?.Damage(gunData.damage);
         if (collision.gameObject.GetComponent<Bullet>() == null)
         {
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();

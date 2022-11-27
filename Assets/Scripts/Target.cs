@@ -8,7 +8,6 @@ public class Target : MonoBehaviour, IDamageable
     [SerializeField] private ParticleSystem hitParticleSystem;
     public void Damage(int damage)
     {
-        Debug.Log("hit");
         GameObject particles = Instantiate(hitParticleSystem.gameObject, this.transform);
         particles.GetComponent<ParticleSystem>().Play();
 

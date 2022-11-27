@@ -86,6 +86,6 @@ public class WeaponSwitching : MonoBehaviour
 
     private void OnWeaponSelected()
     {
-        print("Selected new weapon..");
+        
     }
 }

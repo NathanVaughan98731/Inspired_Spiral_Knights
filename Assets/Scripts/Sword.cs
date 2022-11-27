@@ -128,8 +128,6 @@ public class Sword : MonoBehaviour
         var slashProjectile = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
         slashProjectile.GetComponent<SlashProjectile>().direction = swordEdge.forward * swordData.slashProjectileSpeed;
         slashProjectile.GetComponent<SlashProjectile>().setSlashDamage(swordData.chargeDamage);
-        //slashProjectile.GetComponent<Rigidbody>().velocity = swordEdge.forward * swordData.slashProjectileSpeed;
-
     }
 
     private void OnSwordSlash()
