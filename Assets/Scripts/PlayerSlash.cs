@@ -6,23 +6,29 @@ using UnityEngine;
 public class PlayerSlash : MonoBehaviour
 {
     public static Action slashInput;
-    public static Action deactivate;
     public static Action chargeInput;
+    public static Action countChargeTime;
     public static Action chargeAttackInput;
 
     [SerializeField] private KeyCode chargeKey;
 
-    private bool charging;
+    private int swingOnce = 0;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            slashInput?.Invoke();
-        }
         if (Input.GetMouseButton(0))
         {
+            if (swingOnce == 0)
+            {
+                swingOnce = 1;
+                slashInput?.Invoke();
+            }
+            countChargeTime?.Invoke();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
             chargeInput?.Invoke();
+            swingOnce = 0;
         }
     }
 }
