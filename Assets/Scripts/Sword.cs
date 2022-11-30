@@ -125,7 +125,7 @@ public class Sword : MonoBehaviour
 
     public void Discharge()
     {
-        var slashProjectile = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation);
+        var slashProjectile = Instantiate(swordSlashPrefab, swordEdge.position, swordEdge.rotation * swordSlashPrefab.transform.rotation);
         slashProjectile.GetComponent<SlashProjectile>().direction = swordEdge.forward * swordData.slashProjectileSpeed;
         slashProjectile.GetComponent<SlashProjectile>().setSlashDamage(swordData.chargeDamage);
     }
