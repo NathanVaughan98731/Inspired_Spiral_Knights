@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public Vector3 PlayerMovementInput;
 
@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float Jumpforce;
     private AbilityHolder abilityHolder;
+
+    [SerializeField] private int health = 100;
+    public ParticleSystem hitParticleSystem;
 
     private const string AXIS_HORIZONTAL = "Horizontal";
     private const string AXIS_VERTICAL = "Vertical";
@@ -61,5 +64,20 @@ public class PlayerController : MonoBehaviour
         PlayerMovementInput = new Vector3(Input.GetAxis(AXIS_HORIZONTAL), 0f, Input.GetAxis(AXIS_VERTICAL));
         MovePlayer();
         RotatePlayer();
+    }
+
+    public void Damage(int damage)
+    {
+        GameObject particles = Instantiate(hitParticleSystem.gameObject, this.transform);
+        particles.GetComponent<ParticleSystem>().Play();
+
+        this.health -= damage;
+        if (health <= 0)
+        {
+            this.health = 0;
+            particles.gameObject.transform.parent = null;
+            Debug.Log("Dead");
+        }
+        Destroy(particles.gameObject, 2f);
     }
 }

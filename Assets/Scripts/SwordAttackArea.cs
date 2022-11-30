@@ -22,7 +22,8 @@ public class SwordAttackArea : MonoBehaviour
             forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;
             Vector3 n_forceDirection = forceDirection.normalized;
 
-            collider.GetComponentInParent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * sword.swordData.knockback, ForceMode.Impulse);
+            // Add knockback later on here...
+            //collider.GetComponent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * sword.swordData.knockback, ForceMode.Impulse);
         }
     }
 

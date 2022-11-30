@@ -29,7 +29,7 @@ public class SlashProjectile : MonoBehaviour
 
         if (other.GetComponentInParent<SlashProjectile>() == null && other.GetComponent<SwordAttackArea>() == null && other.tag != "Player")
         {
-            IDamageable damageable = other.GetComponentInParent<IDamageable>();
+            IDamageable damageable = other.GetComponent<IDamageable>();
             damageable?.Damage(damage);
             DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
             indicator.SetDamageText(damage);
