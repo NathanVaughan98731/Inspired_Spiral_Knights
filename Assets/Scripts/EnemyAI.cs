@@ -48,8 +48,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void Patrolling()
     {
-        Debug.Log(walkPointSet);
-
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -58,7 +56,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        Debug.Log(distanceToWalkPoint.magnitude);
 
         // Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
@@ -107,7 +104,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     public void Damage(int damage)
     {
-        Debug.Log(transform.position);
         GameObject particles = Instantiate(hitParticleSystem.gameObject, transform);
         particles.GetComponent<ParticleSystem>().Play();
 

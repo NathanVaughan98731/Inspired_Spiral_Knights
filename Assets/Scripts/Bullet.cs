@@ -18,11 +18,20 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, life);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponent<Bullet>() == null)
+        //if (collision.gameObject.GetComponent<Bullet>() == null)
+        //{
+        //    IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        //    damageable?.Damage(damage);
+        //    DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+        //    indicator.SetDamageText(damage);
+        //    Destroy(gameObject);
+        //}
+        Debug.Log(other.gameObject);
+        if (other.gameObject.GetComponent<Bullet>() == null && other.tag != "Player")
         {
-            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            IDamageable damageable = other.GetComponent<IDamageable>();
             damageable?.Damage(damage);
             DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
             indicator.SetDamageText(damage);

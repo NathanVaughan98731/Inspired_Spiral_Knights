@@ -26,8 +26,8 @@ public class SlashProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.GetComponentInParent<SlashProjectile>() == null && other.GetComponent<SwordAttackArea>() == null && other.tag != "Player")
+        Debug.Log(other.gameObject);
+        if (other.GetComponent<SlashProjectile>() == null && other.GetComponent<SwordAttackArea>() == null && other.tag != "Player")
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable?.Damage(damage);
