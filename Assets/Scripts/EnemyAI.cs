@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         player = GameObject.Find("Player").transform;
         sword = weapon.GetComponent<Sword>();
         // Automatically find the attackRange based on the weapon
-        attackRange = 1;
+        //attackRange = 1;
         timeBetweenAttacks = 3f / sword.swordData.speed;
         agent = GetComponent<NavMeshAgent>();
     }

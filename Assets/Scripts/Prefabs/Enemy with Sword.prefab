@@ -406,15 +406,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734320348452008398, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
       propertyPath: attackRange
-      value: 3
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734320348452008398, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
+      propertyPath: walkPointRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734320348452008399, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
+      propertyPath: m_Speed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1734320348452008399, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
       propertyPath: m_Acceleration
-      value: 9.35
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1734320348452008399, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
       propertyPath: m_AngularSpeed
-      value: 1000
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734320348452008399, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc196adb79381d439d9320b3218f515, type: 3}
