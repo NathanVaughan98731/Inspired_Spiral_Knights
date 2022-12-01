@@ -31,6 +31,7 @@ public class SlimeAI : MonoBehaviour, IDamageable
     // Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public GameObject attackCollider;
 
     // States
     public float sightRange, attackRange;
@@ -41,6 +42,7 @@ public class SlimeAI : MonoBehaviour, IDamageable
         target = GameObject.Find("Player").transform;
         faceMaterial = SlimeBody.GetComponent<Renderer>().materials[1];
         agent = GetComponent<NavMeshAgent>();
+        attackCollider.SetActive(false);
     }
     void SetFace(Texture tex)
     {
@@ -68,7 +70,6 @@ public class SlimeAI : MonoBehaviour, IDamageable
                 agent.isStopped = false;
                 agent.updateRotation = true;
                 animator.SetFloat("Speed", agent.velocity.magnitude);
-
                 break;
 
             case SlimeAnimationState.Jump:
@@ -130,6 +131,7 @@ public class SlimeAI : MonoBehaviour, IDamageable
 
         if (message.Equals("AnimationAttackEnded"))
         {
+            attackCollider.SetActive(false);
             currentState = SlimeAnimationState.Idle;
         }
 
@@ -194,14 +196,17 @@ public class SlimeAI : MonoBehaviour, IDamageable
         if (!alreadyAttacked)
         {
             // Attack Code
+            attackCollider.SetActive(true);
             currentState = SlimeAnimationState.Attack;
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+
     }
 
     private void ResetAttack()
     {
+        attackCollider.SetActive(false);
         alreadyAttacked = false;
     }
 

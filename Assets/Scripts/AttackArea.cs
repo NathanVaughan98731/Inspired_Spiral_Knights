@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    [SerializeField] private int damage = 3;
-    [SerializeField] private int punch = 1;
+    public int damage = 5;
+    public GameObject damageText;
 
     private Vector3 forceDirection;
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<Health>() != null)
+        if (collider.gameObject.tag == "Player")
         {
-            Health health = collider.GetComponent<Health>();
-            health.Damage(damage);
-            Vector3 mousePos = Input.mousePosition;
+            IDamageable damageable = collider.gameObject.GetComponentInParent<IDamageable>();
+            damageable?.Damage(damage);
+            DamageIndicator indicator = Instantiate(damageText, collider.gameObject.transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+            indicator.SetDamageText(damage);
 
-            // Get the direction of the attack from the player to the mouse cursor
-            forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;
+            //Vector3 mousePos = Input.mousePosition;
+            //forceDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - gameObject.GetComponentInParent<Transform>().position;
+            //Vector3 n_forceDirection = forceDirection.normalized;
 
-            Vector3 n_forceDirection = forceDirection.normalized;
-            Debug.Log(n_forceDirection);
-            Debug.DrawLine(gameObject.GetComponentInParent<Transform>().position, gameObject.GetComponentInParent<Transform>().position + n_forceDirection, Color.red);
-            collider.GetComponent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * punch, ForceMode.Impulse);
-
+            // Add knockback later on here...
+            //collider.GetComponent<Rigidbody>().AddForce(new Vector3(n_forceDirection.x, 0, n_forceDirection.z) * sword.swordData.knockback, ForceMode.Impulse);
         }
     }
 
@@ -36,5 +35,10 @@ public class AttackArea : MonoBehaviour
         float distance;
         plane.Raycast(ray, out distance);
         return ray.GetPoint(distance);
+    }
+
+    public void Update()
+    {
+
     }
 }
