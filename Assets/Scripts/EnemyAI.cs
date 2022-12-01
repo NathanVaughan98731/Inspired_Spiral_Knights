@@ -7,6 +7,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
 {
     public NavMeshAgent agent;
 
+    public GameObject weapon;
+    public Sword sword;
+
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
@@ -32,6 +35,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
+        sword = weapon.GetComponent<Sword>();
+        // Automatically find the attackRange based on the weapon
+        attackRange = 1;
+        timeBetweenAttacks = 3f / sword.swordData.speed;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -90,8 +97,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (!alreadyAttacked)
         {
             // Attack Code
-            
-
+            sword.Slash();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

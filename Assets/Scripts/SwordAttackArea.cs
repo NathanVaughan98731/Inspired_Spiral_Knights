@@ -11,7 +11,7 @@ public class SwordAttackArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.GetComponent<SlashProjectile>() == null)
+        if (collider.gameObject.GetComponent<SlashProjectile>() == null && collider.gameObject.tag != "SwordCollider")
         {
             IDamageable damageable = collider.gameObject.GetComponentInParent<IDamageable>();
             damageable?.Damage(sword.totalDamage);

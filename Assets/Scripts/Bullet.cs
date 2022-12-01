@@ -28,8 +28,7 @@ public class Bullet : MonoBehaviour
         //    indicator.SetDamageText(damage);
         //    Destroy(gameObject);
         //}
-        Debug.Log(other.gameObject);
-        if (other.gameObject.GetComponent<Bullet>() == null && other.tag != "Player")
+        if (other.gameObject.GetComponent<Bullet>() == null && other.tag != "Player" && other.gameObject.tag != "SwordCollider")
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable?.Damage(damage);

@@ -7,6 +7,7 @@ using TMPro;
 public class Sword : MonoBehaviour
 {
     // Should make these readable
+    [SerializeField] public GameObject holder;
     [SerializeField] public SwordData swordData;
 
     [Header("Sword Properties")]
@@ -42,13 +43,17 @@ public class Sword : MonoBehaviour
 
     private void Start()
     {
+        if (holder.tag == "Player")
+        {
+            PlayerSlash.slashInput += Slash;
+            PlayerSlash.chargeInput += Charge;
+            PlayerSlash.countChargeTime += CountChargeTime;
+        }
         totalDamage = swordData.damage + bonusDamage;
         totalChargeTime = swordData.chargeTime + bonusChargeTime;
         totalChargeDamage = swordData.chargeDamage + bonusChargeDamage;
         totalSpeed = swordData.speed + bonusSpeed;
-        PlayerSlash.slashInput += Slash;
-        PlayerSlash.chargeInput += Charge;
-        PlayerSlash.countChargeTime += CountChargeTime;
+
         swordParticleSystem.SetActive(false);
         swordChargeParticleSystem.SetActive(false);
     }
@@ -94,15 +99,18 @@ public class Sword : MonoBehaviour
                 swordAttackArea.SetActive(false);
             }
         }
-
-        if (ammoDisplay != null)
+        if (holder.tag == "Player")
         {
-            ammoDisplay.SetText("0 / 0");
-        }        
-        if (weaponNameDisplay != null)
-        {
-            weaponNameDisplay.SetText(swordData.name);
+            if (ammoDisplay != null)
+            {
+                ammoDisplay.SetText("0 / 0");
+            }
+            if (weaponNameDisplay != null)
+            {
+                weaponNameDisplay.SetText(swordData.name);
+            }
         }
+
 
     }
 
