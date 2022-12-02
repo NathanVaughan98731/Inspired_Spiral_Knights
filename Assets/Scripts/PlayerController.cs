@@ -71,13 +71,37 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameObject particles = Instantiate(hitParticleSystem.gameObject, this.transform);
         particles.GetComponent<ParticleSystem>().Play();
 
-        this.health -= damage;
-        if (health <= 0)
+        Shield playerShield = this.gameObject.GetComponentInChildren<Shield>();
+        if (playerShield != null)
         {
-            this.health = 0;
-            particles.gameObject.transform.parent = null;
-            Debug.Log("Dead");
+            if (playerShield.shieldActivated)
+            {
+                playerShield.Damage(damage);
+            }
+            else
+            {
+                this.health -= damage;
+                if (health <= 0)
+                {
+                    this.health = 0;
+                    particles.gameObject.transform.parent = null;
+                    Debug.Log("Dead");
+                }
+            }
+            Destroy(particles.gameObject, 2f);
+
         }
-        Destroy(particles.gameObject, 2f);
+        else
+        {
+            this.health -= damage;
+            if (health <= 0)
+            {
+                this.health = 0;
+                particles.gameObject.transform.parent = null;
+                Debug.Log("Dead");
+            }
+            Destroy(particles.gameObject, 2f);
+        }
+        
     }
 }
