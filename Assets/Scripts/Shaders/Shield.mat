@@ -40,10 +40,14 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SphereHardness: 0
+    - _SphereMask: 1
+    - _SphereRadius: 0
     - _VertexFrequency: 2
     m_Colors:
     - _BackColor: {r: 0, g: 0.6596858, b: 1.9999998, a: 1}
-    - _FrontColor: {r: 0, g: 5.2774863, b: 15.999998, a: 0.15686275}
+    - _FrontColor: {r: 0, g: 227.85338, b: 683.5601, a: 0.15686275}
+    - _SphereCenter: {r: 0.1, g: 0.1, b: 0.1, a: 0}
     - _VertexAmount: {r: 0.1, g: 0.1, b: 0.1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &912832956611565674
