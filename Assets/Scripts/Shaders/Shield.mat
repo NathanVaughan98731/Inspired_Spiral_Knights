@@ -40,11 +40,15 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _VertexFrequency: 1
+    - _SphereHardness: 0
+    - _SphereMask: 0
+    - _SphereRadius: 0
+    - _VertexFrequency: 2
     m_Colors:
-    - _BackColor: {r: 1, g: 0, b: 0, a: 1}
-    - _FrontColor: {r: 1, g: 0.08018869, b: 0.08018869, a: 0}
-    - _VertexAmount: {r: 1, g: 1, b: 1, a: 0}
+    - _BackColor: {r: 0.1872549, g: 0, b: 0, a: 0.019607844}
+    - _FrontColor: {r: 0, g: 32.125492, b: 95.87451, a: 1}
+    - _SphereCenter: {r: 0, g: 0, b: 0, a: 0}
+    - _VertexAmount: {r: 0.05, g: 0.05, b: 0.05, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &912832956611565674
 MonoBehaviour:
