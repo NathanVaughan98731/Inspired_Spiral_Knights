@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcf386cec8ad5a444a9013881f5f4770, type: 3}
-  m_Name: Pistol
+  m_Name: USP
   m_EditorClassIdentifier: 
-  name: Glock
-  damage: 20
-  maxDistance: 100
-  currentAmmo: 19
-  magSize: 30
-  fireRate: 250
-  reloadTime: 1.5
+  name: USP
+  damage: 15
+  maxDistance: 12
+  currentAmmo: 11
+  magSize: 12
+  fireRate: 350
+  reloadTime: 0.5
   reloading: 0
