@@ -13,12 +13,20 @@ public class Gun : MonoBehaviour
     [SerializeField] private TextMeshProUGUI weaponNameDisplay;
     public float bulletSpeed = 10;
 
+    public List<GameObject> muzzleFlashes;
+
     float timeSinceLastShot;
+
+    int muzzleFlashCount = 0;
 
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
+        for (int i = 0; i < muzzleFlashes.Count; i++)
+        {
+            muzzleFlashes[i].transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        }
     }
 
     private void OnDisable() => gunData.reloading = false;
@@ -58,6 +66,23 @@ public class Gun : MonoBehaviour
                 //    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                 //    damageable?.Damage(gunData.damage);
                 //}
+
+                if (muzzleFlashCount < muzzleFlashes.Count)
+                {
+                    var flash = Instantiate(muzzleFlashes[muzzleFlashCount], muzzle.position, muzzle.rotation);
+                    flash.transform.rotation = muzzle.rotation * Quaternion.AngleAxis(-90, Vector3.up);
+                    Destroy(flash, 0.05f);
+                }
+                else
+                {
+                    muzzleFlashCount = 0;
+                    var flash = Instantiate(muzzleFlashes[muzzleFlashCount], muzzle.position, muzzle.rotation);
+                    flash.transform.rotation = muzzle.rotation * Quaternion.AngleAxis(-90, Vector3.up);
+
+                    Destroy(flash, 0.05f);
+                }
+
+                muzzleFlashCount++;
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();

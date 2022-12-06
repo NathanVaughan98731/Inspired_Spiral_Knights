@@ -83,6 +83,12 @@ MonoBehaviour:
   ammoDisplay: {fileID: 0}
   weaponNameDisplay: {fileID: 0}
   bulletSpeed: 16
+  muzzleFlashes:
+  - {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+  - {fileID: 100004, guid: 2b80d2843dd54ca46ac16e9f28dcf9d2, type: 3}
+  - {fileID: 100004, guid: b7d03fb0762c75449af69d624547e358, type: 3}
+  - {fileID: 100004, guid: 510e0a736e5e66243b242a076c59611a, type: 3}
+  - {fileID: 100004, guid: 62d07207e73637c428642d14ef91b778, type: 3}
 --- !u!1001 &8031367019305198477
 PrefabInstance:
   m_ObjectHideFlags: 0
