@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Shield")]
-public class ShieldData : ScriptableObject
+public class ShieldData : Item
 {
     [Header("Info")]
     public new string name;
