@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             target.y = transform.position.y;
             transform.LookAt(target);
             //transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-            Debug.DrawRay(transform.position, target);
-            Debug.Log(hit.transform.name);
         }
         
 

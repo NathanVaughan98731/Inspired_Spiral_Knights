@@ -163,7 +163,7 @@ public class SlimeAI : MonoBehaviour, IDamageable
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         // Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 4f)
         {
             walkPointSet = false;
         }
@@ -175,7 +175,7 @@ public class SlimeAI : MonoBehaviour, IDamageable
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
+        Debug.Log(walkPoint);
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
