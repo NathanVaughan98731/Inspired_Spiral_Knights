@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -14,10 +15,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     private AbilityHolder abilityHolder;
 
     [SerializeField] private int health = 100;
+    [SerializeField] private Slider healthBar;
     public ParticleSystem hitParticleSystem;
 
     private const string AXIS_HORIZONTAL = "Horizontal";
     private const string AXIS_VERTICAL = "Vertical";
+
+    private const int MAX_HEALTH = 100;
 
     void Start()
     {
@@ -27,7 +31,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-
+        healthBar.maxValue = MAX_HEALTH;
+        healthBar.value = health;
 
     }
 
@@ -47,13 +52,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void RotatePlayer()
     {
+        int layerMask = 1 << LayerMask.NameToLayer("WhatIsGround");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            transform.LookAt(hit.point);
-            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-            //Debug.Log(hit.point);
+            var target = hit.point;
+            target.y = transform.position.y;
+            transform.LookAt(target);
+            //transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+            Debug.DrawRay(transform.position, target);
+            Debug.Log(hit.transform.name);
         }
         
 

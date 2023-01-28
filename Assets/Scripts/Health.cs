@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private float health = 100;
-    [SerializeField] private Transform healthBar;
+    [SerializeField] private Slider healthBar;
 
     private int MAX_HEALTH = 100;
 
@@ -23,9 +24,11 @@ public class Health : MonoBehaviour
         }
         if (healthBar != null)
         {
-            healthBar.localScale = new Vector3(this.health/100, 0.2f, 1);
-            healthBar.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y + 1f, transform.position.z);
-            healthBar.transform.LookAt(healthBar.transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
+            //healthBar.localScale = new Vector3(this.health/100, 0.2f, 1);
+            //healthBar.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y + 1f, transform.position.z);
+            //healthBar.transform.LookAt(healthBar.transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
+            healthBar.maxValue = MAX_HEALTH;
+            healthBar.value = health;
         }
     }
 
