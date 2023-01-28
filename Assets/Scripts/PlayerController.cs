@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
     public Vector3 PlayerMovementInput;
 
     [SerializeField] private Rigidbody PlayerBody;
-    [SerializeField] private Camera PlayerCamera;
+    public CinemachineImpulseSource impulse;
     [Space]
     [SerializeField] private float Speed;
     [SerializeField] private float Jumpforce;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private const int MAX_HEALTH = 100;
 
+
     void Start()
     {
         abilityHolder = GetComponent<AbilityHolder>();
@@ -34,6 +36,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         healthBar.maxValue = MAX_HEALTH;
         healthBar.value = health;
 
+    }
+
+    public void Shake()
+    {
+        impulse.GenerateImpulse(2f);
     }
 
     private void MovePlayer()
@@ -75,6 +82,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Damage(int damage)
     {
+        Shake();
+
         GameObject particles = Instantiate(hitParticleSystem.gameObject, this.transform);
         particles.GetComponent<ParticleSystem>().Play();
 

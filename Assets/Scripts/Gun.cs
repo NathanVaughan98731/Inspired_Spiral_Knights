@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class Gun : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Gun : MonoBehaviour
 
     int muzzleFlashCount = 0;
 
+    public CinemachineImpulseSource impulse;
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
@@ -50,6 +52,10 @@ public class Gun : MonoBehaviour
         gunData.reloading = false;
     }
 
+    public void Shake()
+    {
+        impulse.GenerateImpulse(0.3f);
+    }
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
     public void Shoot()
@@ -58,6 +64,7 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot() && this.gameObject.activeSelf)
             {
+                Shake();
                 var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
                 bullet.GetComponent<Bullet>().setBulletDamage(gunData.damage);
                 bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
