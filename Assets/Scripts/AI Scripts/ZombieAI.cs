@@ -122,6 +122,8 @@ public class ZombieAI : MonoBehaviour, IDamageable
 
     private void DestroyEnemy()
     {
+        GameController controller = GameObject.FindGameObjectWithTag("GameController").GetComponent("GameController") as GameController;
+        controller.KilledEnemy();
         Destroy(gameObject);
     }
 }
