@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     public Transform enemy;
     public TextMeshProUGUI enemyCountText;
+    public TextMeshProUGUI playerMoneyText;
     // We want to delay our code at certain times
     public float timeBeforeSpawning = 1.5f;
     public float timeBetweenEnemies = .25f;
@@ -14,6 +15,8 @@ public class GameController : MonoBehaviour
 
     public int enemiesPerWave = 10;
     private int currentNumberOfEnemies = 0;
+
+    public int playerMoney = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         enemyCountText.text = "Enemies: " + currentNumberOfEnemies.ToString() + "/" + enemiesPerWave.ToString();
+        playerMoneyText.text = "$" + playerMoney.ToString();
 
     }
 
@@ -67,6 +71,7 @@ public class GameController : MonoBehaviour
     public void KilledEnemy()
     {
         currentNumberOfEnemies--;
+        playerMoney += 100;
     }
 
 
