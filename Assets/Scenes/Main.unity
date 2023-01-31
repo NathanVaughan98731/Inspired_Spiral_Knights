@@ -5752,6 +5752,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 663289019}
     - target: {fileID: 6215945405919546626, guid: 2faead3847a6f404aaf32ec5271537ce, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 612815491128154790, guid: 40a921194740b144390c3d7c7f9374be, type: 3}
+    - target: {fileID: 6215945405919546626, guid: 2faead3847a6f404aaf32ec5271537ce, type: 3}
       propertyPath: weaponNameDisplay
       value: 
       objectReference: {fileID: 1392125754}
