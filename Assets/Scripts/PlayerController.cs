@@ -59,17 +59,29 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void RotatePlayer()
     {
-        int layerMask = 1 << LayerMask.NameToLayer("WhatIsGround");
+        int layerMask1 = 1 << LayerMask.NameToLayer("WhatIsGround");
+        int layerMask2 = 1 << LayerMask.NameToLayer("WhatIsEnemy");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+
+        // Checking if the mouse is on an enemy, if it is then lock the aim to the center of the enemy.
+        // Makes it easier for the player to shoot the appropriate enemy.
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask2))
+        {
+            var target = hit.point;
+            target.y = transform.position.y;
+            Vector3 newTargetPos = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+            transform.LookAt(newTargetPos);
+
+        }
+        // Otherwise, allow the player to rotate according to where the mouse is on the map.
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask1))
         {
             var target = hit.point;
             target.y = transform.position.y;
             transform.LookAt(target);
-            //transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
         }
-        
+
 
     }
 
