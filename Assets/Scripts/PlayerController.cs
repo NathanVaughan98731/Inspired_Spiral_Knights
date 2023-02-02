@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private const int MAX_HEALTH = 100;
 
+    private bool isWalking;
 
     void Start()
     {
@@ -51,10 +52,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerBody.AddForce(Vector3.up * Jumpforce, ForceMode.Impulse);
-        }
+        isWalking = PlayerBody.velocity != Vector3.zero;
     }
 
     private void RotatePlayer()
@@ -131,5 +129,10 @@ public class PlayerController : MonoBehaviour, IDamageable
             Destroy(particles.gameObject, 2f);
         }
         
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
     }
 }
