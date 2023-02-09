@@ -25,17 +25,38 @@ public class PlayerController : MonoBehaviour, IDamageable
     private const int MAX_HEALTH = 100;
 
     private bool isWalking;
+    private bool isJumping;
+    private bool isFalling;
+
+    public float FallingThreshold = -10f;
 
     void Start()
     {
-        abilityHolder = GetComponent<AbilityHolder>();
+        //abilityHolder = GetComponent<AbilityHolder>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthBar.maxValue = MAX_HEALTH;
-        healthBar.value = health;
+        if (healthBar != null)
+        {
+            healthBar.maxValue = MAX_HEALTH;
+            healthBar.value = health;
+        }
+
+        if (PlayerBody.velocity.y == 0)
+        {
+            PlayerJump();
+        }
+
+        if (PlayerBody.velocity.y < FallingThreshold)
+        {
+            isFalling = true;
+        }
+        else
+        {
+            isFalling = false;
+        }
 
     }
 
@@ -47,12 +68,21 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void MovePlayer()
     {
         Vector3 MoveVector = PlayerMovementInput * Speed;
-        if (abilityHolder.state != AbilityHolder.AbilityState.active)
+        if (abilityHolder != null)
+        {
+            if (abilityHolder.state != AbilityHolder.AbilityState.active)
+            {
+                PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+            }
+        }
+
+        if (abilityHolder == null)
         {
             PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
         }
 
-        isWalking = PlayerBody.velocity != Vector3.zero;
+
+        isWalking = PlayerBody.velocity.x != 0 || PlayerBody.velocity.z != 0;
     }
 
     private void RotatePlayer()
@@ -88,6 +118,20 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerMovementInput = new Vector3(Input.GetAxis(AXIS_HORIZONTAL), 0f, Input.GetAxis(AXIS_VERTICAL));
         MovePlayer();
         RotatePlayer();
+
+    }
+
+    private void PlayerJump()
+    {
+        if (Input.GetKey(KeyCode.Space) == true)
+        {
+            isJumping = true;
+            PlayerBody.velocity += new Vector3(0, Jumpforce, 0);
+        }
+        if (PlayerBody.velocity.y < 4)
+        {
+            isJumping = false;
+        }
     }
 
     public void Damage(int damage)
@@ -134,5 +178,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     public bool IsWalking()
     {
         return isWalking;
+    }
+
+    public bool IsJumping()
+    {
+        return isJumping;
+    }
+
+    public bool IsFalling()
+    {
+        return isFalling;
     }
 }

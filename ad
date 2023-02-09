@@ -1,0 +1,95 @@
+[33ma81b2b8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD@{7}
+[33mab6d23e[m HEAD@{1}: reset: moving to HEAD@{7}
+[33m52a109c[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{2}: reset: moving to HEAD@{1}
+[33m52a109c[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{3}: reset: moving to HEAD@{3}
+[33m52a109c[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{4}: reset: moving to HEAD@{2}
+[33m86bb9db[m HEAD@{5}: reset: moving to HEAD
+[33m86bb9db[m HEAD@{6}: reset: moving to HEAD~3
+[33m52a109c[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{7}: reset: moving to HEAD~2
+[33ma81b2b8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{8}: reset: moving to HEAD~1
+[33mab6d23e[m HEAD@{9}: reset: moving to HEAD~1
+[33m6b758ee[m HEAD@{10}: reset: moving to HEAD
+[33m6b758ee[m HEAD@{11}: commit: Untrack files in .gitignore
+[33mab6d23e[m HEAD@{12}: commit: Changed gitignore
+[33ma81b2b8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{13}: commit: Added some animations to the player controller, simple ones.
+[33m92bebbb[m HEAD@{14}: commit: Added a new 3D model with bones and joints. Focusing more on the player controller in a different scene.
+[33m52a109c[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{15}: commit: Added a new model for the player and added some animation to make the player feel more alive.
+[33m6734f77[m HEAD@{16}: commit: Created a new projectile using unity's particle system, produces lag when instantiating a lot in game.
+[33mfa95a15[m HEAD@{17}: commit: Added aim assist for the player to lock the aim to the center of the enemy they are interested in shooting at.
+[33m86bb9db[m HEAD@{18}: commit: Added money system where player earns money upon killing enemies.
+[33m2a19f43[m HEAD@{19}: commit: Added a game controller that deals with the waves of enemies spawning.
+[33ma43f1e0[m HEAD@{20}: commit: Added Zombie AI and a punch attack.
+[33m22c8f06[m HEAD@{21}: commit: Added cinemachine camera to the game and created a camera shake effect for when the player is hit and when the guns shoot.
+[33m3ed1bd3[m HEAD@{22}: commit: Fixed a bug with the slime enemy not walking to appropriate places. Also added a new font to the UI.
+[33me8d493f[m HEAD@{23}: commit: Added a health bar onto the UI and also fixed a bug where the player's raycast was not being calculated correctly and causing some interesting problems when the mouse is over an enemy.
+[33m1654ff8[m HEAD@{24}: commit: Small changes.
+[33m8d3ad11[m HEAD@{25}: commit: Added inventory feature, still needs everything to connect to each other.
+[33m9f0c36a[m HEAD@{26}: commit: Fixed up the ak47 and usp and also added some gun fire flashes when the player shoots the gun.
+[33m5141fd6[m HEAD@{27}: commit: Added the model for the USP pistol.
+[33mba368e5[m HEAD@{28}: commit: Added the model for the ak-47 gun.
+[33mae96aca[m HEAD@{29}: commit (merge): Imported some assets.
+[33mb85eaf0[m HEAD@{30}: commit: Imported some assets.
+[33mfd1c235[m HEAD@{31}: reset: moving to HEAD~1
+[33mea65875[m HEAD@{32}: reset: moving to HEAD~1
+[33md66dcc8[m HEAD@{33}: reset: moving to HEAD~1
+[33m147d40e[m HEAD@{34}: commit: Shield shader is still buggy, disabled it ingame for now.
+[33md66dcc8[m HEAD@{35}: commit: Attempted to add some collision effects to the shield when damaged, however, created errors.
+[33mea65875[m HEAD@{36}: commit: Fixed the shield shader for the player, correctly displays it now.
+[33mfd1c235[m HEAD@{37}: commit: Created shader for shield. Still buggy, needs to be fixed.
+[33m9c7cd08[m HEAD@{38}: commit: Added a scriptable object for shield data and shield is able to be broken by enemies and have a recharge time before it comes back.
+[33ma54b702[m HEAD@{39}: commit: Rename Scene
+[33m3da574a[m HEAD@{40}: commit: Fixed slime attack to do damage to target and also fixed bug where the player pulls out the sword and does damage without slashing.
+[33ma27a04c[m HEAD@{41}: commit: Fixed slime animation and facial expression when damaged.
+[33m4a309df[m HEAD@{42}: commit: Added a Slime to the game that uses the same enemy AI previously.
+[33me5b07f0[m HEAD@{43}: commit: Added a quick shield ability.
+[33mae052a1[m HEAD@{44}: commit: Fixed sword player sword charge attack bug.
+[33m687570c[m HEAD@{45}: commit: Added an enemy that holds a sword as their weapon and is able to inflict damage to the player. Still some bugs where the animation is not corrected for the slash.
+[33m30172ef[m HEAD@{46}: commit: Fixed sword charged slash projectile attack to be able to damage the new enemies.
+[33m55c3a39[m HEAD@{47}: commit: Fixed damage particles to be spawned at correct location on enemy.
+[33md8c0bb2[m HEAD@{48}: commit: Added a new enemy AI that patrols, attacks and follows.
+[33mfd18731[m HEAD@{49}: pull: Merge made by the 'recursive' strategy.
+[33maced1be[m HEAD@{50}: commit: Remove blend files from being committed.
+[33m8359a04[m HEAD@{51}: reset: moving to HEAD~4
+[33mee076d0[m HEAD@{52}: reset: moving to HEAD~1
+[33mfa6f175[m HEAD@{53}: commit: Remove blend files from being committed.
+[33mee076d0[m HEAD@{54}: reset: moving to HEAD~1
+[33m7d24241[m HEAD@{55}: reset: moving to HEAD~1
+[33m7e80a33[m HEAD@{56}: commit: Remove blend files from being committed.
+[33m7d24241[m HEAD@{57}: commit: Remove blend files from being committed.
+[33mee076d0[m HEAD@{58}: commit: Remove blend files from being committed.
+[33m597828e[m HEAD@{59}: commit: Remove blend files from being committed.
+[33mef2a3ca[m HEAD@{60}: commit: Made a model for the sword charge attack slash projectile in Blender and imported into unity.
+[33m3a8cd0f[m HEAD@{61}: commit: Made a model for the sword charge attack slash projectile in Blender and imported into unity.
+[33m8359a04[m HEAD@{62}: commit: Added a simple triangle model from blender to test how to import objects made in blender into unity.
+[33m5c8fc45[m HEAD@{63}: commit: Removed some debug logs and cleaned up a bit of code.
+[33m2a1fa05[m HEAD@{64}: commit: Changed the charge attack sword slash projectile to not be a rigid body allowing it to pass through objects.
+[33mf4fc14f[m HEAD@{65}: commit: Fixed the weapon switching to enable and disable the playerslash and playershoot scripts according to the current weapon. Fix other minor things.
+[33m1b90067[m HEAD@{66}: commit: Fixed the charge attack for the swords. Charge timer works fine.
+[33mfd9b31b[m HEAD@{67}: commit: Attempted to add a slash projectile attack to the charge. Still need to fix the charging ability for the sword to work appropriately.
+[33m5833d86[m HEAD@{68}: commit: Polished up some of the charge attack for the sword and added particle effect to indicate sword is fully charged. Added some more changes to the sword data.
+[33m24b9f30[m HEAD@{69}: commit: Added a charge attack for the sword.
+[33m03aa289[m HEAD@{70}: commit: Added basic UI for chosen weapon and ammo.
+[33mb9aa64a[m HEAD@{71}: commit: Added particle effects for when objects are hit by sword or bullet.
+[33m53efc50[m HEAD@{72}: commit: Fixed some minor bugs and increased sword reach.
+[33m6d3ab43[m HEAD@{73}: commit: Added a trail for the basic sword implementation.
+[33m695e1d4[m HEAD@{74}: commit: Fixed sword slash basic animation and timing.
+[33m3cc65d7[m HEAD@{75}: commit: Fixed bug where switching weapons would cause the previous weapon to shoot aswell.
+[33m943b43d[m HEAD@{76}: commit: Added automatic reloading of guns.
+[33mc358ab8[m HEAD@{77}: commit: Added some trails for the gun bullets.
+[33mf1ae54a[m HEAD@{78}: commit: Fixed the collision set active for the sword combat.
+[33mc8e5214[m HEAD@{79}: commit: Added a new weapon, sword, still has a few bugs including not disabling the collision box when activated.
+[33m2623414[m HEAD@{80}: commit: Added a weapon switching system for the weapons currently under weapon holder for the player.
+[33m76cffb4[m HEAD@{81}: commit: Added in some damage indicators when an object is hit by projectiles.
+[33mc1f1f25[m HEAD@{82}: commit: Made a simple spawner that spawns targets around the map.
+[33m438f307[m HEAD@{83}: commit: Added bullet projectiles to the glock and removed the raycast.
+[33mb83bfd1[m HEAD@{84}: commit: Added a simple weapon system and implemented a glock that can damage targets.
+[33mf1753fc[m HEAD@{85}: commit: Added a simple ability system and a dash ability for the player.
+[33m040e85d[m HEAD@{86}: commit: Fixed healthbars to stay on top of objects and look at camera.
+[33m6fef33e[m HEAD@{87}: commit: Created a simple health bar for objects.
+[33m7168fae[m HEAD@{88}: commit: Fixed direction of punch and force on objects.
+[33m4081c9e[m HEAD@{89}: commit: Added a punch attack for the player, however, still got problems.
+[33m9087740[m HEAD@{90}: commit: Player now looks at the mouse cursor.
+[33m50133e1[m HEAD@{91}: commit: Added simple CharacterController script.
+[33mf51796b[m HEAD@{92}: checkout: moving from master to main
+[33m2577069[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{93}: commit: Initial Commit
+[33mf5099e7[m HEAD@{94}: commit (initial): Initial Commit

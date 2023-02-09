@@ -13,6 +13,5 @@ public class DashAbility : Ability
         Rigidbody rb = parent.GetComponent<Rigidbody>();
 
         rb.velocity += player.PlayerMovementInput.normalized * dashVelocity;
-        Debug.Log(rb.velocity);
     }
 }
