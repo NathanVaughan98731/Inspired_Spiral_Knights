@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public Vector3 PlayerMovementInput;
 
+    [SerializeField] private Transform camera;
+
     [SerializeField] private Rigidbody PlayerBody;
     public CinemachineImpulseSource impulse;
     [Space]
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             isFalling = false;
         }
 
+
     }
 
     public void Shake()
@@ -68,18 +71,35 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void MovePlayer()
     {
         Vector3 MoveVector = PlayerMovementInput * Speed;
-        if (abilityHolder != null)
-        {
-            if (abilityHolder.state != AbilityHolder.AbilityState.active)
-            {
-                PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
-            }
-        }
 
-        if (abilityHolder == null)
-        {
-            PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
-        }
+        // Camera direction
+        Vector3 camForward = camera.forward;
+        Vector3 camRight = camera.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        // Creating relative camera direction
+        Vector3 forwardRelative = MoveVector.z * camForward;
+        Vector3 rightRelative = MoveVector.x * forwardRelative;
+
+        Vector3 moveDirection = forwardRelative + rightRelative;
+
+        PlayerBody.velocity = new Vector3(moveDirection.x, PlayerBody.velocity.y, moveDirection.z);
+
+
+        //if (abilityHolder != null)
+        //{
+        //    if (abilityHolder.state != AbilityHolder.AbilityState.active)
+        //    {
+        //        PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        //    }
+        //}
+
+        //if (abilityHolder == null)
+        //{
+        //    PlayerBody.velocity = new Vector3(MoveVector.x, PlayerBody.velocity.y, MoveVector.z);
+        //}
 
 
         isWalking = PlayerBody.velocity.x != 0 || PlayerBody.velocity.z != 0;
@@ -87,28 +107,30 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void RotatePlayer()
     {
-        int layerMask1 = 1 << LayerMask.NameToLayer("WhatIsGround");
-        int layerMask2 = 1 << LayerMask.NameToLayer("WhatIsEnemy");
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        // Checking if the mouse is on an enemy, if it is then lock the aim to the center of the enemy.
-        // Makes it easier for the player to shoot the appropriate enemy.
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask2))
-        {
-            var target = hit.point;
-            target.y = transform.position.y;
-            Vector3 newTargetPos = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
-            transform.LookAt(newTargetPos);
+        //transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
+        //int layerMask1 = 1 << LayerMask.NameToLayer("WhatIsGround");
+        //int layerMask2 = 1 << LayerMask.NameToLayer("WhatIsEnemy");
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hit;
 
-        }
-        // Otherwise, allow the player to rotate according to where the mouse is on the map.
-        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask1))
-        {
-            var target = hit.point;
-            target.y = transform.position.y;
-            transform.LookAt(target);
-        }
+        //// Checking if the mouse is on an enemy, if it is then lock the aim to the center of the enemy.
+        //// Makes it easier for the player to shoot the appropriate enemy.
+        //if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask2))
+        //{
+        //    var target = hit.point;
+        //    target.y = transform.position.y;
+        //    Vector3 newTargetPos = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+        //    transform.LookAt(newTargetPos);
+
+        //}
+        //// Otherwise, allow the player to rotate according to where the mouse is on the map.
+        //else if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask1))
+        //{
+        //    var target = hit.point;
+        //    target.y = transform.position.y;
+        //    transform.LookAt(target);
+        //}
 
 
     }
