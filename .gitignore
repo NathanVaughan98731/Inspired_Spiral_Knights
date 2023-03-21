@@ -10,6 +10,8 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Aa]ssets/[Ss]cripts/[Mm]odels/
+/[Aa]ssets/[Pp]olygon*/
+/[Pp]ackages/
 
 # Blender
 *.blend
